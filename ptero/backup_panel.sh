@@ -22,6 +22,7 @@ parse_env() {
 }
 
 backup_panel() {
+  mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
   parse_env DB_HOST DB_DATABASE DB_PASSWORD DB_USERNAME # grab variables from .env file
   cp /var/www/pterodactyl/.env $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
   echo "* .env copied!"
