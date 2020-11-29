@@ -31,7 +31,7 @@ backup_panel() {
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
   tar -czvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
-  rm -rf $BACKUP_DIR/panel-$TIME_STAMP/ # Delete folder now that archive has been made
+ # rm -rf $BACKUP_DIR/panel-$TIME_STAMP/ # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
 }
 
