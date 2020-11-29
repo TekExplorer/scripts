@@ -60,6 +60,6 @@ failed_archive() { # occurs when the archive does not have an expected file
 
 backup_panel
 check_archive .env || failed_archive
-check_archive $DB_DATABASE.sql || failed_archive
+check_archive ${DB_DATABASE}.sql || failed_archive
 
 echo "* Your backup has been saved in $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
