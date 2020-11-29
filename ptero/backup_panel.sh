@@ -17,7 +17,7 @@ echo ""
 
 parse_env() {
   for variable in "$@"; do
-    $@=$(grep $@= /var/www/pterodactyl/.env | cut -d '=' -f2)
+    ${variable}=$(grep ${variable}= /var/www/pterodactyl/.env | cut -d '=' -f2)
   done
 }
 
