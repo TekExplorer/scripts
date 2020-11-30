@@ -48,7 +48,10 @@ backup_panel() {
   echo "* Attempting to dump database!"
   mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
-  tar -czf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
+  
+ # tar -czf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
+  tar -czf - $BACKUP_DIR/panel-$TIME_STAMP > $BACKUP_DIR/panel-$TIME_STAMP.tar.gz
+
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
  # rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
@@ -72,6 +75,6 @@ failed_archive() { # occurs when the archive does not have an expected file
 
 backup_panel
 check_archive .env || failed_archive
-check_archive ${DB_DATABASE}.sql || failed_archive
+check_archive $DB_DATABASE.sql || failed_archive
 
 echo "* Your backup has been saved in $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
