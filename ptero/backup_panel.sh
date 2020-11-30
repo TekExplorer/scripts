@@ -12,8 +12,20 @@ echo "#                                                       #"
 echo "#                                                       #"
 echo "#########################################################"
 echo ""
-echo "* Your backup will be saved in ${BACKUP_DIR}"
+echo "* Your backup will be saved in ${BACKUP_DIR}/panel-$TIME_STAMP.tar.gz"
 echo ""
+echo "* If you would like to change this directory, quit this script and add the directory you would like to use as an argument"
+
+read -r -p "Would you like to continue? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY]) 
+        return
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
 
 error() {
   COLOR_RED='\033[0;31m'
