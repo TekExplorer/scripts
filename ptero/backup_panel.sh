@@ -38,7 +38,8 @@ backup_panel() {
   echo "* .env copied!"
   
   echo " Attempting to dump database! "
-  mysqldump -h $DB_HOST -u $DB_USERNAME –p'${DB_PASSWORD}' $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
+#  mysqldump -h $DB_HOST -u $DB_USERNAME –p'${DB_PASSWORD}' $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
+  mysqldump -h $DB_HOST $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
 
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
   tar -czvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
