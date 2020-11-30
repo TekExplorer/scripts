@@ -3,7 +3,7 @@ set -euo pipefail
 
 DEFAULT_BACKUP_DIR=/var/lib/ptero.sh/panel-backups
 BACKUP_DIR=$(echo ${1:-$DEFAULT_BACKUP_DIR} | sed -e s./$..g)
-TIME_STAMP="$(date --iso-8601=s)"
+TIME_STAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 envfile=/var/www/pterodactyl/.env
 
 if [[ $EUID -ne 0 ]]; then
@@ -75,7 +75,7 @@ backup_panel() {
   mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p"${DB_PASSWORD?:required password not set}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
   
   cd $BACKUP_DIR/panel-$TIME_STAMP/
-  tar -czvf panel-$TIME_STAMP.tar.gz .
+  tar -czvf --force-local panel-$TIME_STAMP.tar.gz .
   
   mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
     
