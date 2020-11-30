@@ -33,7 +33,6 @@ case "$response" in
         ;;
 esac
 
-
 error() {
   COLOR_RED='\033[0;31m'
   COLOR_NC='\033[0m'
@@ -61,17 +60,16 @@ DB_PASSWORD=$(parse_env DB_PASSWORD)
 DB_USERNAME=$(parse_env DB_USERNAME)
 
 backup_panel() {
-  mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
-  cp /var/www/pterodactyl/.env $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
-  echo "* .env copied!"
-  echo "* Attempting to dump database!"
-  mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
-  echo "* Database dumped to $DB_DATABASE.sql and copied!"
+  mkdir -p $BACKUP_DIR/panel-$TIME_STAMP || failed_create_directory
+  
+  cp /var/www/pterodactyl/.env $BACKUP_DIR/panel-$TIME_STAMP/.env && echo "* .env file sucsessfully copied!" || error ".env file copy failed!"
+
+  mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql && echo "* DB dump successful!" || error "DB dump failed!!" 
   
   echo "* Archiving Database and .env"
   
   cd $BACKUP_DIR/panel-$TIME_STAMP/
-  tar -czvf panel-$TIME_STAMP.tar.gz .
+  tar -czvf panel-$TIME_STAMP.tar.gz . && echo "* Archival successful!" || error "Archival failed!"
   mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
   
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
@@ -96,7 +94,12 @@ failed_archive() { # occurs when the archive does not have an expected file
   exit 1
 }
 
-backup_panel
+failed_create_directory() {
+  echo "You do not have the permissions for this directory!"
+  exit 1
+}
+
+backup_panel || error "something broke!"
 check_archive .env || failed_archive
 check_archive $DB_DATABASE.sql || failed_archive
 
