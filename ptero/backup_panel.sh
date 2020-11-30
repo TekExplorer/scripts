@@ -27,13 +27,11 @@ echo ""
 
 ask_confirm() {
   read -r -p "Would you like to continue? [y/N] " response
-  case "$response" in
-      [yY][eE][sS]|[yY]) 
-          return
-          ;;
-      *)
-          exit 1
-          ;;
+  # ${response,,} - make whole content lowercase
+  # ${response^^} - make whole content uppercase
+  case "${response,,}" in
+    yes|y) return;;
+    *) exit 1;;
   esac
 }
 
