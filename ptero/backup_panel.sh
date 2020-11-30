@@ -56,9 +56,11 @@ backup_panel() {
 
 check_archive() { # checks to make sure the archive has a file
     if tar -tvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1; then
-        return 0
+        echo "$1 is in archive!"
+        #return 0
     else
-        return 1
+        echo "$1 is not in archive! oh no!"
+        #return 1
     fi
 }
 
@@ -69,7 +71,7 @@ failed_archive() { # occurs when the archive does not have an expected file
 }
 
 backup_panel
-# check_archive .env || failed_archive
-# check_archive ${DB_DATABASE}.sql || failed_archive
+check_archive .env || failed_archive
+check_archive ${DB_DATABASE}.sql || failed_archive
 
 echo "* Your backup has been saved in $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
