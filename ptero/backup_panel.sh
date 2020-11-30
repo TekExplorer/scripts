@@ -15,6 +15,15 @@ echo ""
 echo "* Your backup will be saved in ${BACKUP_DIR}"
 echo ""
 
+error() {
+  COLOR_RED='\033[0;31m'
+  COLOR_NC='\033[0m'
+
+  echo ""
+  echo -e "* ${COLOR_RED}ERROR${COLOR_NC}: $1"
+  echo ""
+}
+
 parse_env1() {
   for variable in "$@"; do
     ${variable}=$(grep ${variable}= /var/www/pterodactyl/.env | cut -d '=' -f2)
@@ -54,15 +63,6 @@ check_archive() { # checks to make sure the archive has a file
 }
 
 failed_archive() { # occurs when the archive does not have an expected file
-  error() {
-    COLOR_RED='\033[0;31m'
-    COLOR_NC='\033[0m'
-
-    echo ""
-    echo -e "* ${COLOR_RED}ERROR${COLOR_NC}: $1"
-    echo ""
-  }
-
   error "The archive does not contain the expected files! The backup has been deleted! Please try again."
   rm -rf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz # Delete archive and unarchived folder
   exit 1
