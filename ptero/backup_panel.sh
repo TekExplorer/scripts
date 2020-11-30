@@ -25,15 +25,19 @@ echo ""
 echo "* If you would like to change this directory, quit this script and add the directory you would like to use as an argument"
 echo ""
 
-read -r -p "Would you like to continue? [y/N] " response
-case "$response" in
-    [yY][eE][sS]|[yY]) 
-        return
-        ;;
-    *)
-        exit 1
-        ;;
-esac
+ask_confirm() {
+  read -r -p "Would you like to continue? [y/N] " response
+  case "$response" in
+      [yY][eE][sS]|[yY]) 
+          return
+          ;;
+      *)
+          exit 1
+          ;;
+  esac
+}
+
+ask_confirm
 
 error() {
   COLOR_RED='\033[0;31m'
