@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 DEFAULT_BACKUP_DIR=/var/lib/ptero.sh/panel-backups
 BACKUP_DIR=$(echo ${1:-$DEFAULT_BACKUP_DIR} | sed -e s./$..g)
@@ -43,21 +44,6 @@ error() {
   echo ""
 }
 
-#################################################
-#  parse_env() {
-#    grep $1 $envfile | cut -d '=' -f2
-#  }
-#
-#  # grab variables from .env file
-#  # parse_env DB_HOST DB_DATABASE DB_PASSWORD DB_USERNAME
-#  DB_HOST=$(parse_env DB_HOST)
-#  DB_DATABASE=$(parse_env DB_DATABASE)
-#  DB_PASSWORD=$(parse_env DB_PASSWORD)
-#  DB_USERNAME=$(parse_env DB_USERNAME)
-###################################################
-
-# set -euo pipefail
-
 parse_env() {
   eval "$(
     source $envfile &>/dev/null # Source all variables temporarily
@@ -78,32 +64,19 @@ parse_env() {
 
 parse_env DB_HOST DB_DATABASE DB_PASSWORD DB_USERNAME
 
-# Print the command we'd execute. Remove both lines with EOF to run the command instead
-cat <<EOF
-mysqldump -h $DB_HOST -u $DB_USERNAME –p"${DB_PASSWORD}" $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
-EOF
-
 
 backup_panel() {
   mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
   cp $envfile $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
-  echo "* .env copied!"
-  echo "* Attempting to dump database!"
- # mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
+
   mysqldump -h $DB_HOST -u $DB_USERNAME –p"${DB_PASSWORD}" $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
-  
-  echo "* Database dumped to $DB_DATABASE.sql and copied!"
-  
-  echo "* Archiving Database and .env"
   
   cd $BACKUP_DIR/panel-$TIME_STAMP/
   tar -czvf panel-$TIME_STAMP.tar.gz .
+  
   mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
-  
-  echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
-  
+    
   rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
-  echo "* Deleted temporary folder!"
 }
 
 check_archive() { # checks to make sure the archive has a file
