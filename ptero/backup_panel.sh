@@ -52,10 +52,12 @@ backup_panel() {
  # tar -czf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
  # tar -czf - $BACKUP_DIR/panel-$TIME_STAMP/ > $BACKUP_DIR/panel-$TIME_STAMP.tar.gz
 
-  cd $BACKUP_DIR/panel-$TIME_STAMP/ && tar -czf ../panel-$TIME_STAMP.tar.gz
-
+  cd $BACKUP_DIR/panel-$TIME_STAMP/
+  tar -czvf panel-$TIME_STAMP.tar.gz .
+  mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
+  
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
- # rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
+  rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
 }
 
