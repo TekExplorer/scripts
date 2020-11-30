@@ -39,7 +39,7 @@ backup_panel() {
   echo "* Attempting to dump database!"
   mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
-  tar -czvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
+  tar -czf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
  # rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
