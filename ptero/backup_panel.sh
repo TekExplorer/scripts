@@ -49,25 +49,25 @@ backup_panel() {
   mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
   
- # tar -czf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
- # tar -czf - $BACKUP_DIR/panel-$TIME_STAMP/ > $BACKUP_DIR/panel-$TIME_STAMP.tar.gz
-
+  echo "* Archiving Database and .env"
+  
   cd $BACKUP_DIR/panel-$TIME_STAMP/
   tar -czvf panel-$TIME_STAMP.tar.gz .
   mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
   
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
+  
   rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
 }
 
 check_archive() { # checks to make sure the archive has a file
     if tar -tvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1; then
-        echo "$1 is in archive!"
-        #return 0
+       # echo "$1 is in archive!"
+        return 0
     else
-        echo "$1 is not in archive! oh no!"
-        #return 1
+       # echo "$1 is not in archive! oh no!"
+        return 1
     fi
 }
 
