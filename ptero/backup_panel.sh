@@ -72,7 +72,7 @@ backup_panel() {
   cp $envfile $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
 
  # mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
-  mysqldump -h "$DB_HOST" -u "$DB_USERNAME" –p"${DB_PASSWORD}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
+  mysqldump -h "$DB_HOST" -u "$DB_USERNAME" –p"${DB_PASSWORD?:required password not set}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
   
   cd $BACKUP_DIR/panel-$TIME_STAMP/
   tar -czvf panel-$TIME_STAMP.tar.gz .
