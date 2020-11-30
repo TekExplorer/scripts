@@ -37,13 +37,13 @@ backup_panel() {
   cp /var/www/pterodactyl/.env $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
   echo "* .env copied!"
   
+  echo " Attempting to dump database! "
   mysqldump -h $DB_HOST -u $DB_USERNAME –p $DB_PASSWORD $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
-#  mysqldump -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" $DB_DATABASE > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
 
   echo "* Database dumped to $DB_DATABASE.sql and copied!"
   tar -czvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz $BACKUP_DIR/panel-$TIME_STAMP # Archive backup to take less space
   echo "* Archive created at $BACKUP_DIR/panel-$TIME_STAMP.tar.gz"
- # rm -rf $BACKUP_DIR/panel-$TIME_STAMP/ # Delete folder now that archive has been made
+ # rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
   echo "* Deleted temporary folder!"
 }
 
