@@ -15,13 +15,21 @@ echo ""
 echo "* Your backup will be saved in ${BACKUP_DIR}"
 echo ""
 
-parse_env() {
+parse_env1() {
   for variable in "$@"; do
     ${variable}=$(grep ${variable}= /var/www/pterodactyl/.env | cut -d '=' -f2)
   done
 }
 
-parse_env DB_HOST DB_DATABASE DB_PASSWORD DB_USERNAME # grab variables from .env file
+parse_env() {
+  $1=$(grep $1 /var/www/pterodactyl/.env | cut -d '=' -f2)
+}
+
+# grab variables from .env file
+parse_env DB_HOST
+parse_env DB_DATABASE
+parse_env DB_PASSWORD
+parse_env DB_USERNAME
 
 backup_panel() {
   mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
