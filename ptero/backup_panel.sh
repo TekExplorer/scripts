@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 DEFAULT_BACKUP_DIR=/var/lib/ptero.sh/panel-backups
-# BACKUP_DIR=${1:-$DEFAULT_BACKUP_DIR}
 BACKUP_DIR=$(echo ${1:-$DEFAULT_BACKUP_DIR} | sed -e s./$..g)
 TIME_STAMP=$(date "+%b_%d_%Y_%H_%M_%S")
 
