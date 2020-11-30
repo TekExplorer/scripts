@@ -6,6 +6,7 @@ TIME_STAMP=$(date "+%b_%d_%Y_%H_%M_%S")
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 
+   echo "sudo may not work, so switch to root with sudo su"
    exit 1
 fi
 
