@@ -22,14 +22,15 @@ parse_env1() {
 }
 
 parse_env() {
-  $1=$(grep $1 /var/www/pterodactyl/.env | cut -d '=' -f2)
+  grep $1 /var/www/pterodactyl/.env | cut -d '=' -f2
 }
 
 # grab variables from .env file
-parse_env DB_HOST
-parse_env DB_DATABASE
-parse_env DB_PASSWORD
-parse_env DB_USERNAME
+# parse_env DB_HOST DB_DATABASE DB_PASSWORD DB_USERNAME
+DB_HOST=$(parse_env DB_HOST)
+DB_DATABASE=$(parse_env DB_DATABASE)
+DB_PASSWORD=$(parse_env DB_PASSWORD)
+DB_USERNAME=$(parse_env DB_USERNAME)
 
 backup_panel() {
   mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
