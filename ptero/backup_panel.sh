@@ -3,6 +3,7 @@
 DEFAULT_BACKUP_DIR=/var/lib/ptero.sh/panel-backups
 BACKUP_DIR=$(echo ${1:-$DEFAULT_BACKUP_DIR} | sed -e s./$..g)
 TIME_STAMP=$(date "+%b_%d_%Y_%H_%M_%S")
+envfile=/var/www/pterodactyl/.env
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root" 
@@ -45,12 +46,12 @@ error() {
 
 parse_env1() {
   for variable in "$@"; do
-    ${variable}=$(grep ${variable}= /var/www/pterodactyl/.env | cut -d '=' -f2)
+    ${variable}=$(grep ${variable}= $envfile | cut -d '=' -f2)
   done
 }
 
 parse_env() {
-  grep $1 /var/www/pterodactyl/.env | cut -d '=' -f2
+  grep $1 $envfile | cut -d '=' -f2
 }
 
 # grab variables from .env file
@@ -62,7 +63,7 @@ DB_USERNAME=$(parse_env DB_USERNAME)
 
 backup_panel() {
   mkdir -p $BACKUP_DIR/panel-$TIME_STAMP
-  cp /var/www/pterodactyl/.env $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
+  cp $envfile $BACKUP_DIR/panel-$TIME_STAMP/.env # backup .env
   echo "* .env copied!"
   echo "* Attempting to dump database!"
   mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
