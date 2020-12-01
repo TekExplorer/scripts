@@ -74,6 +74,9 @@ backup_panel() {
  # mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
   mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p"${DB_PASSWORD?:required password not set}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
   
+  echo "Waiting a few seconds just in case..."
+  sleep 5
+ 
   cd $BACKUP_DIR/panel-$TIME_STAMP/
   tar -czvf --force-local panel-$TIME_STAMP.tar.gz .
   
