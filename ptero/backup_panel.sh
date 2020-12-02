@@ -7,7 +7,7 @@ TIME_STAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 envfile=/var/www/pterodactyl/.env
 
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
+   echo "This script must be run as root"
    echo "sudo may not work, so switch to root with sudo su"
    exit 1
 fi
@@ -74,14 +74,12 @@ backup_panel() {
  # mysqldump -h $(parse_env DB_HOST) -u $(parse_env DB_USER) -p$(parse_env DB_PASSWORD) $(parse_env DB_DATABASE) > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql
   mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p"${DB_PASSWORD?:required password not set}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
   
- # echo "Waiting a few seconds just in case..."
- # sleep 5
- 
   cd $BACKUP_DIR/panel-$TIME_STAMP/
-  tar -czvf panel-$TIME_STAMP.tar.gz .
+  tar -cvf panel-$TIME_STAMP.tar.gz . # Make archive
   
-  mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/
-    
+  echo "backup created!"
+  
+  mv panel-$TIME_STAMP.tar.gz $BACKUP_DIR/ # Move final export
   rm -rf $BACKUP_DIR/panel-$TIME_STAMP # Delete folder now that archive has been made
 }
 
