@@ -83,13 +83,7 @@ backup_panel() {
 }
 
 check_archive() { # checks to make sure the archive has a file
-    if tar -tf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1; then
-       # echo "$1 is in archive!"
-        return 0
-    else
-       # echo "$1 is not in archive! oh no!"
-        return 1
-    fi
+  tar -tf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1
 }
 
 failed_archive() { # occurs when the archive does not have an expected file
