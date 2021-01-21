@@ -74,7 +74,7 @@ backup_panel() {
   mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p"${DB_PASSWORD?:required password not set}" "$DB_DATABASE" > $BACKUP_DIR/panel-$TIME_STAMP/$DB_DATABASE.sql # Dump Panel db
   
   cd $BACKUP_DIR/panel-$TIME_STAMP/
-  tar -cvf panel-$TIME_STAMP.tar.gz . # Make archive
+  tar -cf panel-$TIME_STAMP.tar.gz . # Make archive
   
   echo "backup created!"
   
@@ -83,7 +83,7 @@ backup_panel() {
 }
 
 check_archive() { # checks to make sure the archive has a file
-    if tar -tvf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1; then
+    if tar -tf $BACKUP_DIR/panel-$TIME_STAMP.tar.gz ./$1 >/dev/null 2>&1; then
        # echo "$1 is in archive!"
         return 0
     else
