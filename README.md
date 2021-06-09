@@ -15,6 +15,7 @@ bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero
 ```
 
 **Pterodactyl Updater** (untested)
+
 Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
