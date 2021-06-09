@@ -6,7 +6,7 @@ If you arent root, you should run `sudo su` first for any script that requires i
 **Pterodactyl Database & .env Backup**
 ```bash
 # root reccomended
-curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- <optional-backup-location>
+curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- <custom backup location>
 ```
 
 **Pterodactyl Updater** (untested)
@@ -22,7 +22,7 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/update_ptero.sh | bash -s -- -a
 Uninstall Pterodactyl Panel and/or Wings easily!
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/ptero/yeet_ptero.sh | bash -s -- -a
+curl -SsL https://g.oaka.xyz/scripts/ptero/yeet_ptero.sh | bash -s --
 ```
 **Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
 ```bash
