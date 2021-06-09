@@ -8,11 +8,6 @@ If you arent root, you should run `sudo su` first for any script that requires i
 # root reccomended
 curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/backup_panel.sh | bash -s -- <optional-backup-location>
 ```
-**Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
-```bash
-# root required
-curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create_dynmap_proxy.sh | bash
-```
 
 **Pterodactyl Updater** (untested)
 
@@ -20,4 +15,17 @@ Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
 curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh | bash -s -- -a
+```
+
+**Pterodactyl Yeeter** (untested)
+
+Uninstall Pterodactyl Panel and/or Wings easily!
+```bash
+# root required
+curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/yeet_ptero.sh | bash -s -- -a
+```
+**Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
+```bash
+# root required
+curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/minecraft/create_dynmap_proxy.sh | bash
 ```
