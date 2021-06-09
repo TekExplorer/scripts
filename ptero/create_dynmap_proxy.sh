@@ -3,7 +3,7 @@
 # Made by TekExplorer with inspiration from https://docs.phoenixnodes.com/advanced-guides/install-nginx-reverse-proxy-on-ubuntu-18.04-for-dynmap
 # Easily set up a Dynmap proxy with either Apache or Nginx
 # Run this script as root (sudo su)
-# ~$ bash <(curl https://raw.githubusercontent.com/TekExplorer/scripts/new/main/ptero/create-dynmap-proxy.sh)
+# ~$ bash <(curl https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create-dynmap-proxy.sh)
 
 setup
 
