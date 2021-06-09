@@ -14,7 +14,7 @@ bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero
 bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create_dynmap_proxy.sh)
 ```
 
-**Pterodactyl Updater** (WIP)
+**Pterodactyl Updater** (untested)
 ```bash
 # root required
 bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh)
