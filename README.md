@@ -14,7 +14,7 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- '<custom
 Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/ptero/update_ptero.sh | bash -s -- -a
+curl -SsL https://g.oaka.xyz/scripts/ptero/update.sh | bash -s -- -a
 ```
 
 **Pterodactyl Yeeter** (untested)
@@ -22,7 +22,7 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/update_ptero.sh | bash -s -- -a
 Uninstall Pterodactyl Panel and/or Wings easily!
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/ptero/yeet_ptero.sh | bash -s --
+curl -SsL https://g.oaka.xyz/scripts/ptero/uninstall.sh | bash -s --
 ```
 **Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
 ```bash
