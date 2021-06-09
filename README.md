@@ -6,7 +6,7 @@ If you arent root, you should run `sudo su` first for any script that requires i
 **Pterodactyl Database & .env Backup**
 ```bash
 # root reccomended
-curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- '<custom backup location>'
+curl -SsL g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- '<custom backup location>'
 ```
 
 **Pterodactyl Updater** (untested)
@@ -14,7 +14,7 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- '<custom
 Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/ptero/update.sh | bash -s -- -a
+curl -SsL g.oaka.xyz/scripts/ptero/update.sh | bash -s -- -a
 ```
 
 **Pterodactyl Yeeter** (untested)
@@ -22,10 +22,10 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/update.sh | bash -s -- -a
 Uninstall Pterodactyl Panel and/or Wings easily!
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/ptero/uninstall.sh | bash -s --
+curl -SsL g.oaka.xyz/scripts/ptero/uninstall.sh | bash -s --
 ```
 **Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/mc/dynmap_proxy.sh | bash
+curl -SsL g.oaka.xyz/scripts/mc/dynmap_proxy.sh | bash
 ```
