@@ -6,7 +6,7 @@ If you arent root, you should run `sudo su` first for any script that requires i
 **Pterodactyl Database & .env Backup**
 ```bash
 # root reccomended
-curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- <custom backup location>
+curl -SsL https://g.oaka.xyz/scripts/ptero/backup_panel.sh | bash -s -- '<custom backup location>'
 ```
 
 **Pterodactyl Updater** (untested)
