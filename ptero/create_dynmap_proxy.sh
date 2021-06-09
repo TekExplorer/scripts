@@ -5,6 +5,11 @@
 # Run this script as root (sudo su)
 # ~$ bash <(curl https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create-dynmap-proxy.sh)
 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
 setup
 
 setup() {
