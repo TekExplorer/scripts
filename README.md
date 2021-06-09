@@ -6,12 +6,12 @@ If you arent root, you should run `sudo su` first for any script that requires i
 **Pterodactyl Database & .env Backup**
 ```bash
 # root reccomended
-bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/backup_panel.sh) <optional-backup-location>
+curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/backup_panel.sh | bash -s -- <optional-backup-location>
 ```
 **Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
 ```bash
 # root required
-bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create_dynmap_proxy.sh)
+curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/create_dynmap_proxy.sh | bash
 ```
 
 **Pterodactyl Updater** (untested)
@@ -19,5 +19,5 @@ bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero
 Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
-bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh) -a
+curl -SsL https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh | bash -s -- -a
 ```
