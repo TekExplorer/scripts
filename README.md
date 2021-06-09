@@ -27,5 +27,5 @@ curl -SsL https://g.oaka.xyz/scripts/ptero/yeet_ptero.sh | bash -s --
 **Dynmap Proxy Creation Tool for Nginx or Apache** (untested)
 ```bash
 # root required
-curl -SsL https://g.oaka.xyz/scripts/minecraft/create_dynmap_proxy.sh | bash
+curl -SsL https://g.oaka.xyz/scripts/mc/dynmap_proxy.sh | bash
 ```
