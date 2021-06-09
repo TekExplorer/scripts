@@ -19,5 +19,5 @@ bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero
 Update your panel, even if its all the way back in 0.6!
 ```bash
 # root required
-bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh)
+bash <(curl -Ss https://raw.githubusercontent.com/TekExplorer/scripts/main/ptero/update_ptero.sh) -a
 ```
