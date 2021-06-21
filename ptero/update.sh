@@ -223,8 +223,8 @@ init() {
   log info "#                                             #"
   log info "###############################################"
 
-  PANEL_DIR=${$PANEL_DIR:-/var/www/pterodactyl}
-  DAEMON_DIR=${$DAEMON_DIR:-/srv/daemon}
+  PANEL_DIR=${PANEL_DIR:-/var/www/pterodactyl}
+  DAEMON_DIR=${DAEMON_DIR:-/srv/daemon}
 
   LATEST_PANEL_RELEASE=$(get_latest_ptero_release "panel")
   LATEST_WINGS_RELEASE=$(get_latest_ptero_release "wings")
