@@ -54,7 +54,7 @@ compare_versions() { [[ ! "$(printf '%s\n' "$1" "$2" | sort -V | head -n1)" = "$
 
 get_latest_ptero_release() {
   curl -s "https://cdn.pterodactyl.io/releases/latest.json" | # Get latest release from Pterodactyl releases.json
-    grep '"${1}":' |                                                # Get tag line
+    grep '"${1}"' |                                                # Get tag line
     sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
 }
 
