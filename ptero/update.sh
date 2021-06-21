@@ -231,7 +231,7 @@ init() {
   LATEST_DAEMON_RELEASE=$(get_latest_ptero_release "daemon")
   DISCORD_LINK=$(get_latest_ptero_release "discord")
 
-  while [ ! $# -eq 0 ]; do
+  while (($#)); do
     case "$1" in
       "" | --help | -h)
         help_menu
