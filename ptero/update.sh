@@ -262,5 +262,4 @@ init() {
   done
 }
 
-init ${@}
-
+init "${@}"
