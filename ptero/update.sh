@@ -101,9 +101,9 @@ update_panel() {
 
 write_wings_service_file() {
   log debug "Writing Wings service file!"
-  line="
+  local line="
     "
-  wings_service_file="
+  local wings_service_file="
     [Unit]
     Description=Pterodactyl Wings Daemon
     After=docker.service
